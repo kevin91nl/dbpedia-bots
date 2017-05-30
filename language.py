@@ -4,6 +4,11 @@ from argparse import ArgumentParser
 
 
 def get_languages():
+    """
+    Retrieve the language information.
+
+    :return: The result of the query.
+    """
     sparql = SPARQLWrapper("http://dbpedia.org/sparql")
     sparql.setReturnFormat(JSON)
 
@@ -37,5 +42,4 @@ if __name__ == '__main__':
             if '(' in label_value:
                 label_value = label_value.split('(')[0].strip()
             if len(lang_code) == 2:
-                print(lang_code, label_lang, label_value)
                 output_file.write('%s\t%s\t%s\n' % (lang_code, label_lang, label_value))
